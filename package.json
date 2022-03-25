@@ -4,14 +4,17 @@
   "description": "Server side rendering template for React 16",
   "main": "src/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development babel-node src/index",
+    "start": "cross-env NODE_ENV=development PORT=8520 babel-node src/index",
+    "start:dev": "cross-env NODE_ENV=development PORT=8520 node src/index ",
+
     "watch": "cross-env NODE_ENV=development nodemon src/index",
     "build": "npm-run-all -p build:client build:server build:node",
     "build:client": "cross-env NODE_ENV=production webpack --config webpack/client/prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack/server/prod.js",
     "build:node": "cross-env NODE_ENV=production webpack --config webpack/node.js",
     "test": "jest",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "ssr":"node public/index.js"
   },
   "jest": {
     "moduleNameMapper": {

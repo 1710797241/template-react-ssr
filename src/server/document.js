@@ -1,9 +1,4 @@
-export default ({
-    appString,
-    js,
-    styles,
-    helmet,
-}) => `
+export default ({ appString, js, styles, helmet }) => `
     <!doctype html>
     <html>
     <head>
@@ -17,7 +12,7 @@ export default ({
     </head>
     <body>
     
-      <div id="react-root">${appString}</div>
+      <div id="root">${appString}</div>
       
       ${js}
       

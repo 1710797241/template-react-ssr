@@ -6,7 +6,7 @@ const GettingStarted = () => (
     <section className={styles.root}>
         To start development on your app, head to
         <code> src/shared/App.js </code>
-        and hack away!
+        and hack away!111
     </section>
 );
 

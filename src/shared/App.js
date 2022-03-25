@@ -16,10 +16,10 @@ export default class App extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>App Component | React Universal</title>
+                    <title>ssr</title>
                 </Helmet>
 
-                <h1>Welcome to React Fiber.</h1>
+                <h1>share ssr ssr srr</h1>
                 <UniversalComponent name="getting-started" />
             </div>
         );

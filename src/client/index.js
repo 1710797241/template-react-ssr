@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import ReactDOM, { hydrate } from 'react-dom';
 
 import App from '../shared/App';
 
@@ -11,10 +11,9 @@ import App from '../shared/App';
  * @param Component React component that should be rendered
  */
 const render = (Component) => {
-    hydrate(
-        <Component/>,
-        document.getElementById('react-root'),
-    );
+    hydrate(<Component />, document.getElementById('root'));
+
+    // ReactDOM.render(<Component />, document.getElementById('root'));
 };
 
 render(App);

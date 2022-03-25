@@ -1,7 +1,11 @@
-import express from 'express';
-import helmet from 'helmet';
-import { join } from 'path';
-import { log } from 'winston';
+// import express from 'express';
+// import helmet from 'helmet';
+// import { join } from 'path';
+// import { log } from 'winston';
+const express = require('express');
+const helmet = require('helmet');
+const { join } = require('path');
+const { log } = require('winston');
 
 /**
  * Configures hot reloading and assets paths for local development environment.
@@ -22,9 +26,11 @@ const configureDevelopment = (app) => {
 
     app.use(publicPath, express.static(path));
 
-    app.use(require('webpack-hot-server-middleware')(multiCompiler, {
-        serverRendererOptions: { outputPath: path },
-    }));
+    app.use(
+        require('webpack-hot-server-middleware')(multiCompiler, {
+            serverRendererOptions: { outputPath: path },
+        })
+    );
 };
 
 /**
@@ -35,23 +41,33 @@ const configureDevelopment = (app) => {
  * @param app Express app
  */
 const configureProduction = (app) => {
+    //直接运行
+    // const clientStats = require('../public/assets/stats.json');
+    // const serverRender = require('../public/assets/app.server.js').default;
+    // const publicPath = '/';
+    // const outputPath = join(__dirname, '../public/assets');
+    // console.log('outputPath', __dirname, ':', outputPath);
+
+    //打包成node 版
     const clientStats = require('./assets/stats.json');
     const serverRender = require('./assets/app.server.js').default;
     const publicPath = '/';
     const outputPath = join(__dirname, 'assets');
 
     app.use(publicPath, express.static(outputPath));
-    app.use(serverRender({
-        clientStats,
-        outputPath,
-    }));
+    app.use(
+        serverRender({
+            clientStats,
+            outputPath,
+        })
+    );
 };
 
 const app = express();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-log('info', `Configuring server for environment: ${process.env.NODE_ENV}...`);
+log('info', `配置服务环境: ${process.env.NODE_ENV}...`);
 app.use(helmet());
 app.set('port', process.env.PORT || 3000);
 
@@ -61,4 +77,6 @@ if (isDevelopment) {
     configureProduction(app);
 }
 
-app.listen(app.get('port'), () => log('info', `Server listening on port ${app.get('port')}...`));
+app.listen(app.get('port'), () =>
+    log('info', `Server listening on port ${app.get('port')}...`)
+);

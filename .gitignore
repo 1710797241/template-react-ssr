@@ -1,0 +1,13 @@
+# IntelliJ
+.idea
+
+# NodeJS
+node_modules
+
+# Project
+public
+__tests__/__snapshots__
+
+#Logs
+*.log 
+
